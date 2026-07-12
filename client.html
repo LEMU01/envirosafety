@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clients</title>
+    <link rel="stylesheet" href="styles/clients.css">
+</head>
+<body>
+ 
+
+    <div class="bar">
+    <a href="index.html" class="back-home-btn-fixed">
+    <i class="fas fa-arrow-left"></i> Rudi Nyumbani
+ </a>
+ <div class="t1">
+<div ><b><h1>OUR CLIENTS</h1></b></div>
+ </div>
+ 
+    </div>
+
+
+<div class="flex-container">
+  
+  <!-- Upande wa Kushoto: Fomu -->
+  <section class="inquiry-form">
+    <div class="in"><h2>GET INQUIRIES</h2></div>
+    
+    <form action="submit_form.php" method="POST">
+      <div class="input-group">
+        <input type="text" name="name" placeholder="Your fullName" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Explain your service..." required></textarea>
+        <button type="submit">submit</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Upande wa Kulia: Orodha ya Wateja -->
+  <section class="clients-side">
+    <div>
+      <h1>OUR HOLLY CLIENTS</h1>
+    </div>
+    <div class="client-list">
+      <div class="typing" data-text="Pivotech Company Limited"></div>
+      <div class="typing" data-text="Radiant Industries Limited"></div>
+      <div class="typing" data-text="Prime Care Distillers"></div>
+      <div class="typing" data-text="Helios Tower"></div>
+      <div class="typing" data-text="St. Anne Maria Schools"></div>
+      <div class="typing" data-text="Mother of Mercy Schools"></div>
+      <div class="typing" data-text="Moshi Fountain Schools"></div>
+      <div class="typing" data-text="Alaf (T) Limited"></div>
+      <div class="typing" data-text="Engen Filling Stations"></div>
+      <div class="typing" data-text="Lake Oil Depot"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Samaki Investiment Industries"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+      <div class="typing" data-text="Petro Africa"></div>
+    
+    </div>
+    
+  </section>
+
+</div>
+<div class="site-footer">
+<div ><p>Thank you for trusting us</p></div>
+
+</div>
+
+
+
+
+<script>
+
+   async function typeWriter(element) {
+  const text = element.getAttribute('data-text');
+  for (let i = 0; i < text.length; i++) {
+    element.innerHTML += text.charAt(i);
+    await new Promise(resolve => setTimeout(resolve, 80)); // Kasi ya herufi
+  }
+}
+
+async function runTypingEffect() {
+  const elements = document.querySelectorAll('.typing');
+  for (const el of elements) {
+    await typeWriter(el); // Inasubiri kila laini imalize kabla ya kwenda chini
+  }
+}
+
+// Inafanya kazi ukurasa unapofunguka
+runTypingEffect();
+
+    const clients = [
+  "Pivotech Company Limited",
+  "Radiant Industries Limited",
+  "Prime Care Distillers",
+  "Helios Tower",
+  "Msasani Towers (MMDT)"
+];
+
+const displayElement = document.getElementById('client-display');
+
+function showClients() {
+  let i = 0;
+  function nextClient() {
+    if (i < clients.length) {
+      displayElement.innerHTML = clients[i]; // Inaonyesha client mmoja
+      displayElement.style.opacity = 1; // Animation ya fade-in
+      
+      // Subiri sekunde 2 kisha badilisha
+      setTimeout(() => {
+        displayElement.style.opacity = 0;
+        setTimeout(() => {
+          i++;
+          nextClient();
+        }, 500); // Muda wa kufifia
+      }, 2000);
+    }
+  }
+  nextClient();
+}
+
+showClients();
+</script>
+
+</body>
+<style>
+    body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  animation: slideBackground 20s infinite; /* Muda wa slider */
+}
+
+@keyframes slideBackground {
+  0%, 100% { background-image: url('pictures/i1.jpeg'); }
+  33% { background-image: url('pictures/i2.jpeg'); }
+  66% { background-image: url('pictures/i3.jpeg'); }
+    70% { background-image: url('pictures/i4.jpeg'); }
+      80% { background-image: url('pictures/i5.jpeg'); }
+        90% { background-image: url('pictures/i7.jpeg'); }
+          66% { background-image: url('pictures/i7.jpeg'); }
+            66% { background-image: url('pictures/i7.jpeg'); }
+}
+</style>
+</html>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Management Team | AEP Enviro Safety</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --dark: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+        body { font-family: 'Poppins', sans-serif; background: #0f0f0f; color: white; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        .hero { height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        
+        /* Grid Layout */
+        .container { max-width: 1200px; margin: auto; padding: 50px 20px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        
+        /* Glass Card Animation */
+        .card { 
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 30px;
+            padding: 30px; text-align: center; transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card:hover { transform: translateY(-20px) scale(1.05); background: var(--primary); }
+        
+        .img-box { width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 4px solid var(--primary); }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Scroll Animation (Fade In) */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .btn-home { 
+            display: inline-block; padding: 15px 40px; background: var(--primary); 
+            border-radius: 50px; color: white; text-decoration: none; margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>Our Leadership Team</h1>
+    <p>Innovation, Integrity, and Safety at the Core</p>
+</div>
+
+<div class="container">
+    <div class="team-grid" id="team">
+        <!-- Card 1 -->
+        <div class="card reveal">
+            <div class="img-box"><img src="pictures/NK.jpeg" alt="CEO"></div>
+            <h3>Albert Mshobozi</h3>
+            <p style="color: #ffcccc;">Founder & CEO</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="card reveal">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500" alt="Ops"></div>
+            <h3>Sarah Mwasota</h3>
+            <p style="color: #ffcccc;">Operations Manager</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="card reveal">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500" alt="Finance"></div>
+            <h3>John Bosco</h3>
+            <p style="color: #ffcccc;">Finance Director</p>
+        </div>
+    </div>
+</div>
+
+<center><a href="about.html" class="btn-home">Back to About Us</a></center>
+
+<script>
+    // Scroll Animation Script
+    window.addEventListener('scroll', () => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(r => {
+            if(r.getBoundingClientRect().top < window.innerHeight - 150) r.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>
