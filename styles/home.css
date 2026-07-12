@@ -1,36 +1,35 @@
 
-/* 1. Hii inazuia picha na vitu visivuke mipaka ya skrini */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* 2. Hii inarekebisha Navbar iwe nzuri kwenye simu */
 @media screen and (max-width: 768px) {
-    header, nav {
-        flex-direction: column;
+    /* 1. Header iwe inashuka chini badala ya kukaa mstari mmoja */
+    header {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
         text-align: center;
-        padding: 10px;
     }
-    
-    /* Inafanya link za menyu zionekane vizuri bila kugongana */
+
+    /* 2. Punguza ukubwa wa maandishi ya kampuni kwenye simu */
+    header h1, header span {
+        font-size: 1.2rem !important;
+    }
+
+    /* 3. Punguza ukubwa wa picha ya logo isiwe kubwa sana */
+    header img {
+        width: 60px !important;
+        margin-bottom: 10px;
+    }
+
+    /* 4. Rekebisha menyu (Home, About, nk) iwe inashuka chini */
+    nav {
+        display: flex;
+        flex-direction: column !important;
+        width: 100%;
+    }
+
     nav a {
-        display: block;
-        padding: 10px;
-        margin: 5px 0;
+        padding: 10px 0;
+        font-size: 0.9rem;
     }
-
-    /* Inafanya grid ziwe na mstari mmoja (stacking) badala ya nyingi */
-    .services-grid, .team-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
-
-/* 3. Inahakikisha hakuna scroll ya pembeni isiyo ya lazima */
-body {
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
 }
 
 .map-button {
