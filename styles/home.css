@@ -1,34 +1,58 @@
 
+/* --- MABORESHO YA RESPONSIVE (MOBILE FRIENDLY) --- */
+
+/* 1. Ondoa horizontal scrolling isiyo ya lazima */
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* 2. Marekebisho ya Header na Navbar */
 @media screen and (max-width: 768px) {
-    /* 1. Header iwe inashuka chini badala ya kukaa mstari mmoja */
     header {
-        display: flex;
+        display: flex !important;
         flex-direction: column !important;
         align-items: center;
         text-align: center;
+        padding: 15px !important;
     }
 
-    /* 2. Punguza ukubwa wa maandishi ya kampuni kwenye simu */
-    header h1, header span {
-        font-size: 1.2rem !important;
-    }
-
-    /* 3. Punguza ukubwa wa picha ya logo isiwe kubwa sana */
-    header img {
-        width: 60px !important;
-        margin-bottom: 10px;
-    }
-
-    /* 4. Rekebisha menyu (Home, About, nk) iwe inashuka chini */
     nav {
-        display: flex;
+        display: flex !important;
         flex-direction: column !important;
-        width: 100%;
+        gap: 10px;
+        margin-top: 10px;
     }
 
-    nav a {
-        padding: 10px 0;
-        font-size: 0.9rem;
+    /* Punguza ukubwa wa logo na maandishi kwenye simu */
+    header img {
+        width: 50px !important;
+    }
+
+    header span {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* 3. Picha ya Hero iwe inafiti skrini */
+@media screen and (max-width: 768px) {
+    .hero-image { /* Badilisha jina la class kama lako ni tofauti */
+        max-height: 300px !important;
+        object-fit: cover;
+    }
+}
+
+/* 4. Marekebisho ya Vision na Mission (Cards) */
+@media screen and (max-width: 768px) {
+    .vision-mission-container { /* Hakikisha class hii ipo kwenye HTML yako */
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 15px !important;
+    }
+
+    .card { /* Class ya kadi zako za Vision/Mission */
+        width: 100% !important;
+        margin-bottom: 20px !important;
     }
 }
 
