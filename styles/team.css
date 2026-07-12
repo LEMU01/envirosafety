@@ -1,0 +1,66 @@
+:root {
+            --primary: #d32f2f;
+            --dark: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+        body { font-family: 'Poppins', sans-serif; background: #0f0f0f; color: white; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        .hero { height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        
+        /* Grid Layout */
+        .container { max-width: 1200px; margin: auto; padding: 50px 20px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        
+        /* Glass Card Animation */
+        .card { 
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 30px;
+            padding: 30px; text-align: center; transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card:hover { transform: translateY(-20px) scale(1.05); background: var(--primary); }
+        
+        .img-box { width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 4px solid var(--primary); }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Scroll Animation (Fade In) */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .btn-home { 
+            display: inline-block; padding: 15px 40px; background: var(--primary); 
+            border-radius: 50px; color: white; text-decoration: none; margin-top: 50px;
+        }
+
+        /* 1. Hii inazuia picha na vitu visivuke mipaka ya skrini */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 2. Hii inarekebisha Navbar iwe nzuri kwenye simu */
+@media screen and (max-width: 768px) {
+    header, nav {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    /* Inafanya link za menyu zionekane vizuri bila kugongana */
+    nav a {
+        display: block;
+        padding: 10px;
+        margin: 5px 0;
+    }
+
+    /* Inafanya grid ziwe na mstari mmoja (stacking) badala ya nyingi */
+    .services-grid, .team-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* 3. Inahakikisha hakuna scroll ya pembeni isiyo ya lazima */
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}

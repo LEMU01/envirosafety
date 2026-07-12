@@ -1,4 +1,38 @@
 
+/* 1. Hii inazuia picha na vitu visivuke mipaka ya skrini */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 2. Hii inarekebisha Navbar iwe nzuri kwenye simu */
+@media screen and (max-width: 768px) {
+    header, nav {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    /* Inafanya link za menyu zionekane vizuri bila kugongana */
+    nav a {
+        display: block;
+        padding: 10px;
+        margin: 5px 0;
+    }
+
+    /* Inafanya grid ziwe na mstari mmoja (stacking) badala ya nyingi */
+    .services-grid, .team-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* 3. Inahakikisha hakuna scroll ya pembeni isiyo ya lazima */
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
 .map-button {
   display: inline-block;
   padding: 10px 20px;
