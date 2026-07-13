@@ -26,7 +26,7 @@
         }
 
         /* ==========================================================================
-           2. HEADER & NAVBAR (LAINI NA IME_LALA KWENYE SIMU NA PC)
+           2. HEADER & NAVBAR
            ========================================================================== */
         .navbar {
             display: flex;
@@ -38,7 +38,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 1000; /* Inakaa juu ya kila kitu ukiscroll */
+            z-index: 1000;
         }
 
         .logo-section {
@@ -87,49 +87,102 @@
         .mobile-team { display: none; }
 
         /* ==========================================================================
-           3. SWIPER SLIDER (FULL SCREEN KWENYE PC)
+           3. SWIPER SLIDER (MODERN BLUR BACKGROUND - NO BLACK BARS)
            ========================================================================== */
         .swiper { 
             width: 100%; 
-            height: 100vh; /* FULL SCREEN: Inajaza kioo chote cha PC hadi chini */
+            height: 75vh; 
+            background-color: #000; 
             position: relative;
+            overflow: hidden;
         }
 
-        .swiper-slide img, .swiper-slide video {
+        .swiper-slide {
+            position: relative;
             width: 100%;
             height: 100%;
-            object-fit: cover;        
-            object-position: top center; /* Inalazimisha vichwa vya watu vionekane vizuri */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* HAPA NDIO TUNAFUTA WEUSI: Picha ya nyuma inayowekwa ukungu na kujaza skrini */
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(20px) brightness(0.5); /* Inaleta ukungu mnene na kuifanya iwe giza kidogo */
+            transform: scale(1.1); /* Inazuia kingo za blur kuonekana nyeupe */
+            z-index: 1;
+        }
+
+        /* Maudhui ya mbele (Picha au Video halisi safi) */
+        .slide-content {
+            position: relative;
+            z-index: 5;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-content img, .slide-content video {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;        
+            filter: brightness(0.95) contrast(1.1) saturate(1.05); 
+            box-shadow: 0 0 30px rgba(0,0,0,0.5); /* Kivuli laini pembeni ya picha kuu */
             
-            /* FILTER: Inaboresha rangi, mwanga na muonekano */
-            filter: brightness(0.92) contrast(1.15) saturate(1.05); 
+            transform: scale(1);
+            transition: transform 0.5s ease;
+        }
+
+        /* Kujongea (Zoom Effect) kwa picha ya mbele pekee */
+        .swiper-slide-active .slide-content img, 
+        .swiper-slide-active .slide-content video {
+            animation: zoomEffect 6s linear forwards;
+        }
+
+        @keyframes zoomEffect {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
 
         /* Maandishi yaliyo juu ya slider */
         .caption {
             position: absolute;
-            bottom: 15%;
+            bottom: 8%;
             left: 5%;
             right: 5%;
             color: white;
-            background: rgba(0, 0, 0, 0.55); 
-            padding: 25px;
+            background: rgba(0, 0, 0, 0.65); 
+            padding: 20px;
             border-radius: 8px;
             max-width: 550px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 20; 
             opacity: 0;
         }
 
         .caption h1 {
-            font-size: 26px;
-            margin-bottom: 8px;
+            font-size: 24px;
+            margin-bottom: 6px;
             color: #ff4500;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
 
         .caption p {
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.4;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
@@ -137,7 +190,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -236,48 +289,38 @@
         }
 
         /* ==========================================================================
-           7. MEDIA QUERIES (MAREKEBISHO YA SIMU NA TABLET)
+           7. MEDIA QUERIES (SIMU NA TABLET)
            ========================================================================== */
         @media (max-width: 992px) {
             .card { width: calc(50% - 20px); }
         }
 
         @media (max-width: 768px) {
-            /* Navbar inabaki imelala (Horizontal) badala ya kuwa wima */
-            .navbar {
-                padding: 10px 3%;
-            }
-            
-            .logo-text {
-                display: none; /* Tunaficha maandishi marefu ya logo kwenye simu ili isijaze nafasi */
-            }
-
-            .nav-links {
-                flex-direction: row; /* Hapa inalazimisha menu kubaki zimelala pembeni */
-                gap: 6px;
-            }
-
-            .nav-links a {
-                padding: 4px 6px;
-                font-size: 12px; /* Maandishi yanakuwa madogo kidogo ili yafit vizuri */
-            }
-
+            .navbar { padding: 10px 3%; }
+            .logo-text { display: none; }
+            .nav-links { flex-direction: row; gap: 6px; }
+            .nav-links a { padding: 4px 6px; font-size: 12px; }
             .team-section { display: none; } 
-            .mobile-team { display: block; } /* Team inaingia kwenye mstari huo huo uliolala */
+            .mobile-team { display: block; } 
 
-            /* Kwenye simu slider haijazi kioo chote ili mtumiaji aone kuna vitu chini */
-            .swiper { 
-                height: 55vh; 
+            .swiper { height: 50vh; }
+
+            /* Kwenye simu tunazima kabisa blur background ili isichukue chaji na kufanya simu iwe nzito */
+            .slide-bg { display: none; }
+
+            .slide-content { width: 100%; height: 100%; }
+            .slide-content img, .slide-content video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                animation: none !important; 
             }
 
-            .caption {
-                bottom: 5%;
-                padding: 12px;
-            }
-            .caption h1 { font-size: 16px; }
-            .caption p { font-size: 12px; }
+            .caption { bottom: 5%; padding: 12px; max-width: 90%; }
+            .caption h1 { font-size: 15px; }
+            .caption p { font-size: 11px; }
             
-            .typewriter-text { font-size: 15px; }
+            .typewriter-text { font-size: 14px; }
             .card { width: 100%; } 
             .site-footer { flex-direction: column; text-align: center; }
         }
@@ -311,51 +354,77 @@
   </div>
 </header>
 
+<!-- SWIPER UNIT -->
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
+    
+    <!-- Slide 1 -->
     <div class="swiper-slide">
-        <img src="pictures/F.jpeg" alt="Fire Safety"/>
+        <!-- Hii ndio picha ya nyuma inayofuta weusi -->
+        <div class="slide-bg" style="background-image: url('pictures/F.jpeg');"></div>
+        <!-- Hii ndio picha halisi ya mbele -->
+        <div class="slide-content">
+            <img src="pictures/F.jpeg" alt="Fire Safety"/>
+        </div>
         <div class="caption">
             <h1>Expert Fire Solutions</h1>
             <p>High-quality emergency preparedness equipment.</p>
         </div>
     </div>
 
+    <!-- Slide 2 -->
     <div class="swiper-slide">
-        <img src="pictures/kipeperushi.png" alt="Flyer"/>
+        <div class="slide-bg" style="background-image: url('pictures/kipeperushi.png');"></div>
+        <div class="slide-content">
+            <img src="pictures/kipeperushi.png" alt="Flyer"/>
+        </div>
          <div class="caption">
             <h1>HSE Services</h1>
             <p>Environmental and safety training workshops.</p>
         </div>
     </div>
     
+    <!-- Slide 3 (Video) -->
     <div class="swiper-slide">
-       <video autoplay muted loop playsinline>
-            <source src="pictures/vid1.mp4" type="video/mp4">
-       </video>
+        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
+        <div class="slide-bg" style="background-color: #1a1a1a;"></div>
+        <div class="slide-content">
+           <video autoplay muted loop playsinline>
+                <source src="pictures/vid1.mp4" type="video/mp4">
+           </video>
+        </div>
        <div class="caption">
             <h1>AEP ENVIRO~SAFETY LIMITED</h1>
             <p>The safety of people and their properties is our priority</p>
         </div>
     </div>
 
+    <!-- Slide 4 -->
     <div class="swiper-slide">
-        <img src="pictures/f2.jpeg" alt="Safety Gear"/>
+        <div class="slide-bg" style="background-image: url('pictures/f2.jpeg');"></div>
+        <div class="slide-content">
+            <img src="pictures/f2.jpeg" alt="Safety Gear"/>
+        </div>
          <div class="caption">
             <h1>Protected Environment</h1>
             <p>We keep organizations prosperous and safe.</p>
         </div>
     </div>
 
+    <!-- Slide 5 (Video 2) -->
     <div class="swiper-slide">
-       <video autoplay muted loop playsinline>
-            <source src="pictures/vid2.mp4" type="video/mp4">
-       </video>
+        <div class="slide-bg" style="background-color: #1a1a1a;"></div>
+        <div class="slide-content">
+           <video autoplay muted loop playsinline>
+                <source src="pictures/vid2.mp4" type="video/mp4">
+           </video>
+        </div>
        <div class="caption">
             <h1>On-Site Training</h1>
             <p>Professional guidance and equipment testing.</p>
         </div>
     </div>
+
   </div>
 </div>
 
@@ -448,15 +517,17 @@
   }
   window.onload = typeWriter;
 
-  // 2. Swiper & Animations
+  // 2. Swiper Initialization
   var swiper = new Swiper(".mySwiper", {
-    autoplay: { delay: 4000 },
+    autoplay: { delay: 5000 }, 
     loop: true,
+    effect: 'fade', 
+    fadeEffect: { crossFade: true },
     on: {
       init: function() {
         setTimeout(() => {
           let firstCaption = document.querySelector('.swiper-slide-active .caption');
-          if(firstCaption) firstCaption.style.animation = 'fadeInUp 0.8s ease forwards';
+          if(firstCaption) firstCaption.style.animation = 'fadeInUp 0.6s ease forwards';
         }, 100);
       },
       slideChange: function () {
@@ -470,7 +541,7 @@
           let activeSlide = this.slides[this.activeIndex];
           if(activeSlide) {
             let cap = activeSlide.querySelector('.caption');
-            if(cap) cap.style.animation = 'fadeInUp 0.8s ease forwards';
+            if(cap) cap.style.animation = 'fadeInUp 0.6s ease forwards';
           }
         }, 50);
       }
