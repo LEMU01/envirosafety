@@ -3,59 +3,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Portfolio | AEP Enviro Safety</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/services.css">
-    <title>Services & Portfolio</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. GLOBAL STYLES & RESETS
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #ff4500;
+            --secondary: #090264;
+            --dark: #2c3e50;
+            --light: #f4f6f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVBAR (BAR IMELALA UTAMADUNI ULE ULE)
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 4%;
+            background-color: #ffffff;
+            color: black;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo { 
+            width: 40px; 
+            height: auto; 
+        }
+
+        .logo-text { 
+            display: flex; 
+            gap: 3px; 
+            font-size: 13px; 
+            flex-wrap: wrap; 
+        }
+
+        .a, .b { color: var(--secondary); }
+        .c, .e { color: #028d14; }
+        .d { color: var(--primary); }
+
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center;
+        }
+
+        .nav-links a, .team-section a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .team-section a:hover {
+            background-color: rgba(255, 69, 0, 0.1);
+            color: var(--primary);
+        }
+
+        .mobile-team { display: none; }
+
+        /* ==========================================================================
+           3. SERVICES SECTION
+           ========================================================================== */
+        .services-section { 
+            padding: 60px 5%; 
+            background-color: var(--light); 
+            text-align: center; 
+        }
+
+        .section-title { 
+            font-size: 2rem; 
+            color: var(--secondary); 
+            margin-bottom: 40px; 
+            text-transform: uppercase; 
+            border-bottom: 3px solid var(--primary); 
+            display: inline-block; 
+            padding-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .card { 
+            background: var(--white); 
+            padding: 40px 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
+            border: 1px solid rgba(255, 69, 0, 0.05);
+        }
+
+        .card-subtitle {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 25px; 
+            margin-top: 20px; 
+        }
+
+        .service-box { 
+            padding: 30px 20px; 
+            border-radius: 15px; 
+            background: #fff9f6; 
+            border: 1px solid #ffeee5;
+            transition: all 0.3s ease; 
+            text-align: center;
+        }
+
+        .service-box:hover { 
+            background: var(--primary); 
+            color: white; 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 20px rgba(255, 69, 0, 0.2);
+        }
+
+        .service-box i { 
+            font-size: 42px; 
+            margin-bottom: 15px; 
+            color: var(--secondary);
+            transition: 0.3s ease;
+        }
+
+        .service-box:hover i {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .service-box h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           4. MODERN PORTFOLIO / SHOWCASE SECTION (GRID)
+           ========================================================================== */
+        .showcase-section { 
+            padding: 60px 5%; 
+            background: var(--white); 
+            text-align: center;
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 10px 0;
+        }
+
+        .media-item {
+            position: relative;
+            height: 260px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            background-color: #000;
+        }
+
+        .media-item:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .media-item img, .media-item video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.4s ease;
+        }
+
+        .media-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ==========================================================================
+           5. MEDIA QUERIES (MAREKEBISHO YA SIMU - NO HORIZONTAL SCROLL kero)
+           ========================================================================== */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 10px 3%;
+            }
+            
+            .logo-text {
+                display: none; 
+            }
+
+            .nav-links {
+                flex-direction: row; 
+                gap: 6px;
+            }
+
+            .nav-links a {
+                padding: 4px 6px;
+                font-size: 12px; 
+            }
+
+            .team-section { display: none; } 
+            .mobile-team { display: block; } 
+
+            .services-section, .showcase-section {
+                padding: 40px 4%;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 25px;
+            }
+
+            .card {
+                padding: 25px 15px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr !important; /* Mstari mmoja tu kwenye simu ili zisigongane */
+                gap: 15px;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr !important; /* Kila picha/video inakaa peke yake kwa upana kamili */
+                gap: 20px;
+            }
+
+            .media-item {
+                height: 220px; /* Inapunguza urefu kidogo kwenye simu ili isichukue nafasi kubwa */
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <section class="services-section">
-        <h2 class="section-title">OUR SERVICES</h2>
-       
-        <div class="card">
-            <h2 style="color: var(--primary);">Our Core Services</h2>
-            <div class="services-grid">
-                <div class="service-box"><i class="fas fa-fire-extinguisher"></i><h4>Fire Fighting Equipment</h4></div>
-                <div class="service-box"><i class="fas fa-bell"></i><h4>Fire Alarm Systems</h4></div>
-                <div class="service-box"><i class="fas fa-user-shield"></i><h4>Safety Gears (PPE'S)</h4></div>
-                <div class="service-box"><i class="fas fa-bolt"></i><h4>Electric Fence Installation</h4></div>
-                <div class="service-box"><i class="fas fa-camera"></i><h4>CCTV Camera Installation</h4></div>
-                <div class="service-box"><i class="fas fa-map-marked-alt"></i><h4>GPS Tracking System</h4></div>
-                <!-- Service mpya -->
-                <div class="service-box"><i class="fas fa-snowflake"></i><h4>AC Installation & Services</h4></div>
-            </div>
+<!-- NAVBAR UNIT -->
+<header class="navbar">
+  <div class="logo-section">
+    <img src="pictures/logo.png" alt="Company Logo" class="logo">
+    <div class="logo-text">
+        <span class="a"><b>AEP</b></span>
+        <span class="b"><b>ENVIRO</b></span>
+        <span class="c"><b>~</b></span>
+        <span class="d"><b>SAFETY</b></span>
+        <span class="e"><b>LIMITED</b></span>
+    </div>
+  </div>
+
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="client.html">Clients</a>
+    <a href="team.html" class="mobile-team">Team</a>
+  </nav>
+
+  <div class="team-section">
+    <a href="team.html">Our Team</a>
+  </div>
+</header>
+
+<!-- MAIN SERVICES SECTION -->
+<section class="services-section">
+    <h2 class="section-title">OUR SERVICES</h2>
+   
+    <div class="card">
+        <h3 class="card-subtitle">Our Core Services</h3>
+        <div class="services-grid">
+            <div class="service-box"><i class="fas fa-fire-extinguisher"></i><h4>Fire Fighting Equipment</h4></div>
+            <div class="service-box"><i class="fas fa-bell"></i><h4>Fire Alarm Systems</h4></div>
+            <div class="service-box"><i class="fas fa-user-shield"></i><h4>Safety Gears (PPE'S)</h4></div>
+            <div class="service-box"><i class="fas fa-bolt"></i><h4>Electric Fence Installation</h4></div>
+            <div class="service-box"><i class="fas fa-camera"></i><h4>CCTV Camera Installation</h4></div>
+            <div class="service-box"><i class="fas fa-map-marked-alt"></i><h4>GPS Tracking System</h4></div>
+            <div class="service-box"><i class="fas fa-snowflake"></i><h4>AC Installation & Services</h4></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Sehemu ya Portfolio / Showcase -->
-    <section class="showcase-section">
-        <h2 class="section-title">PROJECT SHOWCASE</h2>
-        <div class="showcase-container" id="showcase">
-            <!-- Picha/Video Boxes -->
-            <div class="media-item"><img src="pictures/i8.jpeg" alt="Work 1"></div>
-            <div class="media-item"><video muted autoplay src="pictures/v1.mp4" controls></video></div>
-            <div class="media-item"><img src="pictures/i6.jpeg" alt="Work 2"></div>
-            <div class="media-item"><video muted autoplay src="pictures/v2.mp4" controls></video></div>
-            <div class="media-item"><img src="pictures/i11.jpeg" alt="Work 3"></div>
-        </div>
-    </section>
+<!-- PROJECT SHOWCASE SECTION -->
+<section class="showcase-section">
+    <h2 class="section-title">PROJECT SHOWCASE</h2>
+    <div class="showcase-grid">
+        <!-- Picha/Video Items (Zinajipanga zenyewe bila kuharibu muonekano) -->
+        <div class="media-item"><img src="pictures/i8.jpeg" alt="Work 1"></div>
+        <div class="media-item"><video muted autoplay loop playsinline src="pictures/v1.mp4" controls></video></div>
+        <div class="media-item"><img src="pictures/i6.jpeg" alt="Work 2"></div>
+        <div class="media-item"><video muted autoplay loop playsinline src="pictures/v2.mp4" controls></video></div>
+        <div class="media-item"><img src="pictures/i11.jpeg" alt="Work 3"></div>
+    </div>
+</section>
 
-
-
-    <script>
-        // Smooth scroll effect on hover (Optional feature)
-        const container = document.getElementById('showcase');
-        
-        // Hii inafanya showcase isogee kidogo kufuata mouse
-        container.addEventListener('mousemove', (e) => {
-            const { clientWidth, scrollLeft, scrollWidth } = container;
-            if (e.clientX > clientWidth * 0.8) {
-                container.scrollLeft += 5;
-            } else if (e.clientX < clientWidth * 0.2) {
-                container.scrollLeft -= 5;
-            }
-        });
-    </script>
 </body>
 </html>

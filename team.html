@@ -4,50 +4,395 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Management Team | AEP Enviro Safety</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <link rel="stylesheet" href="styles/team.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. GLOBAL STYLES & RESETS
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #ff4500;
+            --secondary: #090264;
+            --dark: #2c3e50;
+            --light: #f4f6f9;
+            --white: #ffffff;
+            --glass-card: rgba(255, 255, 255, 0.85);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f4f6f9, #eef1f6);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVBAR (BAR IMELALA UTAMADUNI ULE ULE)
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 4%;
+            background-color: #ffffff;
+            color: black;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo { 
+            width: 40px; 
+            height: auto; 
+        }
+
+        .logo-text { 
+            display: flex; 
+            gap: 3px; 
+            font-size: 13px; 
+            flex-wrap: wrap; 
+        }
+
+        .a, .b { color: var(--secondary); }
+        .c, .e { color: #028d14; }
+        .d { color: var(--primary); }
+
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center;
+        }
+
+        .nav-links a, .team-section a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .team-section a:hover {
+            background-color: rgba(255, 69, 0, 0.1);
+            color: var(--primary);
+        }
+
+        .mobile-team { display: none; }
+
+        /* ==========================================================================
+           3. HERO BANNER
+           ========================================================================== */
+        .hero {
+            height: 35vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(9, 2, 100, 0.85), rgba(9, 2, 100, 0.95)), url('pictures/i1.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           4. TEAM GRID & GLASS CARDS
+           ========================================================================== */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        /* Muonekano wa Glasi Ulioboreshwa */
+        .card { 
+            background: var(--glass-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(9, 2, 100, 0.05);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        background-color 0.5s ease, 
+                        box-shadow 0.5s ease;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            color: var(--secondary);
+            margin-bottom: 6px;
+            font-weight: 700;
+            transition: color 0.4s ease;
+        }
+
+        .card .role {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.4s ease;
+        }
+
+        /* Hover Effect - Inabadilika kwenda kwenye rangi ya Kampuni badala ya nyekundu */
+        .card:hover { 
+            transform: translateY(-15px) scale(1.02); 
+            background: var(--secondary);
+            box-shadow: 0 15px 35px rgba(9, 2, 100, 0.25);
+            border-color: var(--secondary);
+        }
+
+        .card:hover h3 {
+            color: var(--white);
+        }
+
+        .card:hover .role {
+            color: #ffaa85; /* Rangi ya machungwa hafifu ili ing'ae vizuri juu ya bluu */
+        }
+        
+        /* Frame ya Picha ya Duara */
+        .img-box { 
+            width: 140px; 
+            height: 140px; 
+            border-radius: 50%; 
+            margin: 0 auto 25px; 
+            overflow: hidden; 
+            border: 4px solid var(--white); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .img-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+
+        .card:hover .img-box {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        /* ==========================================================================
+           5. SCROLL INTERACTION ANIMATIONS (FADE IN)
+           ========================================================================== */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(40px); 
+            transition: opacity 0.8s ease, transform 0.8s ease; 
+        }
+        
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* Bottom Navigation Button */
+        .btn-container {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .btn-home { 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 35px; 
+            background: var(--primary); 
+            border-radius: 50px; 
+            color: var(--white); 
+            text-decoration: none; 
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-home:hover {
+            background: #e64a19;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 69, 0, 0.4);
+        }
+
+        /* ==========================================================================
+           6. MEDIA QUERIES (RESPONSIVE FOR ALL SCREEN SIZES)
+           ========================================================================== */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 10px 3%;
+            }
+            
+            .logo-text {
+                display: none; 
+            }
+
+            .nav-links {
+                flex-direction: row; 
+                gap: 6px;
+            }
+
+            .nav-links a {
+                padding: 4px 6px;
+                font-size: 12px; 
+            }
+
+            .team-section { display: none; } 
+            .mobile-team { display: block; } 
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr !important; /* Kadi zinajipanga moja kwa moja kwa wima */
+                gap: 25px;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
+<!-- NAVBAR UNIT -->
+<header class="navbar">
+  <div class="logo-section">
+    <img src="pictures/logo.png" alt="Company Logo" class="logo">
+    <div class="logo-text">
+        <span class="a"><b>AEP</b></span>
+        <span class="b"><b>ENVIRO</b></span>
+        <span class="c"><b>~</b></span>
+        <span class="d"><b>SAFETY</b></span>
+        <span class="e"><b>LIMITED</b></span>
+    </div>
+  </div>
+
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="client.html">Clients</a>
+    <a href="team.html" class="mobile-team">Team</a>
+  </nav>
+
+  <div class="team-section">
+    <a href="team.html">Our Team</a>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
 <div class="hero">
     <h1>Our Leadership Team</h1>
     <p>Innovation, Integrity, and Safety at the Core</p>
 </div>
 
+<!-- MANAGEMENT TEAM CONTAINER -->
 <div class="container">
     <div class="team-grid" id="team">
-        <!-- Card 1 -->
-        <div class="card reveal">
-            <div class="img-box"><img src="pictures/NK.jpeg" alt="CEO"></div>
+        
+        <!-- Card 1: CEO -->
+        <div class="card reveal active">
+            <div class="img-box"><img src="pictures/NK.jpeg" alt="Albert Mshobozi - CEO"></div>
             <h3>Albert Mshobozi</h3>
-            <p style="color: #ffcccc;">Founder & CEO</p>
+            <p class="role">Founder & CEO</p>
         </div>
-        <!-- Card 2 -->
-        <div class="card reveal">
-            <div class="img-box"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500" alt="Ops"></div>
+        
+        <!-- Card 2: Operations Manager -->
+        <div class="card reveal active">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500" alt="Sarah Mwasota"></div>
             <h3>Sarah Mwasota</h3>
-            <p style="color: #ffcccc;">Operations Manager</p>
+            <p class="role">Operations Manager</p>
         </div>
-        <!-- Card 3 -->
-        <div class="card reveal">
-            <div class="img-box"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500" alt="Finance"></div>
+        
+        <!-- Card 3: Finance Director -->
+        <div class="card reveal active">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500" alt="John Bosco"></div>
             <h3>John Bosco</h3>
-            <p style="color: #ffcccc;">Finance Director</p>
+            <p class="role">Finance Director</p>
         </div>
+        
     </div>
 </div>
 
-<center><a href="about.html" class="btn-home">Back to About Us</a></center>
+<!-- BACK BUTTON ACTION -->
+<div class="btn-container">
+    <a href="about.html" class="btn-home"><i class="fas fa-arrow-left"></i> Back to About Us</a>
+</div>
 
+<!-- JAVASCRIPT: SMOOTH SCROLL DETECTION -->
 <script>
-    // Scroll Animation Script
-    window.addEventListener('scroll', () => {
+    function revealCards() {
         const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(r => {
-            if(r.getBoundingClientRect().top < window.innerHeight - 150) r.classList.add('active');
+        reveals.forEach(card => {
+            const windowHeight = window.innerHeight;
+            const cardTop = card.getBoundingClientRect().top;
+            const revealPoint = 100; // Umbali wa kuanza animation wakati mtu anapo-scroll
+
+            if (cardTop < windowHeight - revealPoint) {
+                card.classList.add('active');
+            }
         });
-    });
+    }
+
+    // Washa trigger kila mtu anapo scroll
+    window.addEventListener('scroll', revealCards);
+    
+    // Washa mara moja ukurasa ukifunguka ili zile kadi za juu zionekane mapema
+    window.addEventListener('DOMContentLoaded', revealCards);
 </script>
 </body>
 </html>

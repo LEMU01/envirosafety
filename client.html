@@ -3,137 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>clients</title>
-    <link rel="stylesheet" href="styles/clients.css">
+    <title>Our Clients & Inquiries | AEP Enviro Safety</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. GLOBAL STYLES, RESETS & ANIMATED BACKGROUND
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #ff4500;
+            --secondary: #090264;
+            --dark: #1d1b46;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.92);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            animation: slideBackground 25s infinite ease-in-out;
+            color: #333;
+        }
+
+        @keyframes slideBackground {
+            0%, 100% { background-image: linear-gradient(rgba(9,2,100,0.6), rgba(0,0,0,0.5)), url('pictures/i1.jpeg'); }
+            20% { background-image: linear-gradient(rgba(9,2,100,0.6), rgba(0,0,0,0.5)), url('pictures/i2.jpeg'); }
+            40% { background-image: linear-gradient(rgba(9,2,100,0.6), rgba(0,0,0,0.5)), url('pictures/i3.jpeg'); }
+            60% { background-image: linear-gradient(rgba(9,2,100,0.6), rgba(0,0,0,0.5)), url('pictures/i4.jpeg'); }
+            80% { background-image: linear-gradient(rgba(9,2,100,0.6), rgba(0,0,0,0.5)), url('pictures/i5.jpeg'); }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVBAR (BAR IMELALA UTAMADUNI ULE ULE)
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 4%;
+            background-color: #ffffff;
+            color: black;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo { 
+            width: 40px; 
+            height: auto; 
+        }
+
+        .logo-text { 
+            display: flex; 
+            gap: 3px; 
+            font-size: 13px; 
+            flex-wrap: wrap; 
+        }
+
+        .a, .b { color: var(--secondary); }
+        .c, .e { color: #028d14; }
+        .d { color: var(--primary); }
+
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center;
+        }
+
+        .nav-links a, .team-section a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .team-section a:hover {
+            background-color: rgba(255, 69, 0, 0.1);
+            color: var(--primary);
+        }
+
+        .mobile-team { display: none; }
+
+        /* ==========================================================================
+           3. MAIN GRID LAYOUT
+           ========================================================================== */
+        .flex-container {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            padding: 50px 5%;
+            align-items: flex-start;
+        }
+
+        .inquiry-form, .clients-side {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: transform 0.4s ease;
+        }
+
+        .inquiry-form:hover, .clients-side:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ==========================================================================
+           4. LEFT SIDE: INQUIRY FORM STYLE (EMAIL ONLY DIRECTED)
+           ========================================================================== */
+        .inquiry-form h2 {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            background-color: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: var(--primary);
+            background-color: var(--white);
+            box-shadow: 0 0 12px rgba(255, 69, 0, 0.15);
+            transform: scale(1.01);
+        }
+
+        .input-group button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.2);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .input-group button:hover {
+            background: #e64a19;
+            box-shadow: 0 8px 20px rgba(255, 69, 0, 0.3);
+        }
+
+        /* ==========================================================================
+           5. RIGHT SIDE: CLIENTS SHOWCASE STYLE
+           ========================================================================== */
+        .clients-side h1 {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .client-grid-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .client-grid-display::-webkit-scrollbar {
+            width: 6px;
+        }
+        .client-grid-display::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 10px;
+        }
+
+        .client-card-item {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            border: 1px solid rgba(9, 2, 100, 0.08);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeInUpItem 0.5s ease forwards;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .client-card-item:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(9, 2, 100, 0.2);
+            border-color: var(--secondary);
+        }
+
+        @keyframes fadeInUpItem {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================================================
+           6. FOOTER SECTION
+           ========================================================================== */
+        .site-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            background-color: var(--secondary);
+            color: white;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+        }
+
+        .back-home-btn-fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(255, 69, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-home-btn-fixed:hover {
+            background-color: #e64a19;
+            transform: scale(1.08) translateY(-2px);
+        }
+
+        /* ==========================================================================
+           7. MEDIA QUERIES (SIMU NA TABLET)
+           ========================================================================== */
+        @media screen and (max-width: 992px) {
+            .flex-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar { padding: 10px 3%; }
+            .logo-text { display: none; }
+            .nav-links { flex-direction: row; gap: 6px; }
+            .nav-links a { padding: 4px 6px; font-size: 12px; }
+            .team-section { display: none; } 
+            .mobile-team { display: block; } 
+            .flex-container { padding: 30px 4%; }
+            .inquiry-form, .clients-side { padding: 25px 20px; border-radius: 18px; }
+            .client-grid-display { grid-template-columns: 1fr !important; max-height: 400px; }
+            .back-home-btn-fixed { bottom: 20px; right: 20px; padding: 10px 20px; font-size: 13px; }
+        }
+    </style>
 </head>
 <body>
- 
 
-    <div class="bar">
-    <a href="index.html" class="back-home-btn-fixed">
-    <i class="fas fa-arrow-left"></i> Rudi Nyumbani
- </a>
- <div class="t1">
-<div ><b><h1>OUR CLIENTS</h1></b></div>
- </div>
- 
+<!-- NAVBAR UNIT -->
+<header class="navbar">
+  <div class="logo-section">
+    <img src="pictures/logo.png" alt="Company Logo" class="logo">
+    <div class="logo-text">
+        <span class="a"><b>AEP</b></span>
+        <span class="b"><b>ENVIRO</b></span>
+        <span class="c"><b>~</b></span>
+        <span class="d"><b>SAFETY</b></span>
+        <span class="e"><b>LIMITED</b></span>
     </div>
+  </div>
 
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="client.html">Clients</a>
+    <a href="team.html" class="mobile-team">Team</a>
+  </nav>
 
+  <div class="team-section">
+    <a href="team.html">Our Team</a>
+  </div>
+</header>
+
+<!-- MAIN CONTENT GRID -->
 <div class="flex-container">
   
-  <!-- Upande wa Kushoto: Fomu -->
+  <!-- Upande wa Kushoto: Form (Inatuma kwenye Email pekee sasa hivi) -->
   <section class="inquiry-form">
-    <div class="in"><h2>GET INQUIRIES</h2></div>
+    <h2>Get Inquiries</h2>
     
-    <form action="submit_form.php" method="POST">
+    <!-- BADALA YA "WEKA_FORMSPREE_ID_HAPA", WEKA ILE KODI YA FORMSPREE KUTOKA KWENYE ACCOUNT YAKO -->
+    <form action="https://formspree.io/f/WEKA_FORMSPREE_ID_HAPA" method="POST">
       <div class="input-group">
-        <input type="text" name="name" placeholder="Your fullName" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Explain your service..." required></textarea>
-        <button type="submit">submit</button>
+        <input type="text" name="name" placeholder="Your Full Name" required>
+        <input type="email" name="email" placeholder="Your Email Address" required>
+        <textarea name="message" rows="5" placeholder="Explain the service you need..." required></textarea>
+        <button type="submit">Submit Inquiry <i class="fas fa-paper-plane"></i></button>
       </div>
     </form>
   </section>
 
   <!-- Upande wa Kulia: Orodha ya Wateja -->
   <section class="clients-side">
-    <div>
-      <h1>OUR HOLLY CLIENTS</h1>
-    </div>
-    <div class="client-list">
-      <div class="typing" data-text="Pivotech Company Limited"></div>
-      <div class="typing" data-text="Radiant Industries Limited"></div>
-      <div class="typing" data-text="Prime Care Distillers"></div>
-      <div class="typing" data-text="Helios Tower"></div>
-      <div class="typing" data-text="St. Anne Maria Schools"></div>
-      <div class="typing" data-text="Mother of Mercy Schools"></div>
-      <div class="typing" data-text="Moshi Fountain Schools"></div>
-      <div class="typing" data-text="Alaf (T) Limited"></div>
-      <div class="typing" data-text="Engen Filling Stations"></div>
-      <div class="typing" data-text="Lake Oil Depot"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Samaki Investiment Industries"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-      <div class="typing" data-text="Petro Africa"></div>
-    
-    </div>
-    
+    <h1>Our Trusted Clients</h1>
+    <div class="client-grid-display" id="js-client-grid"></div>
   </section>
 
 </div>
-<div class="site-footer">
-<div ><p>Thank you for trusting us</p></div>
 
-</div>
+<!-- SITE FOOTER -->
+<footer class="site-footer">
+    <p><i class="fas fa-heart" style="color: var(--primary); margin-right: 5px;"></i> Thank you for trusting AEP Enviro Safety Limited</p>
+</footer>
 
+<!-- FIXED ACTION BUTTON -->
+<a href="index.html" class="back-home-btn-fixed">
+    <i class="fas fa-arrow-left"></i> Home
+</a>
 
-
-
+<!-- JAVASCRIPT: DYNAMIC GRID GENERATOR -->
 <script>
+  const clientList = [
+    "Pivotech Company Limited",
+    "Radiant Industries Limited",
+    "Prime Care Distillers",
+    "Helios Tower",
+    "Msasani Towers (MMDT)",
+    "St. Anne Maria Schools",
+    "Mother of Mercy Schools",
+    "Moshi Fountain Schools",
+    "Alaf (T) Limited",
+    "Engen Filling Stations",
+    "Lake Oil Depot",
+    "Petro Africa",
+    "Samaki Investment Industries"
+  ];
 
-   async function typeWriter(element) {
-  const text = element.getAttribute('data-text');
-  for (let i = 0; i < text.length; i++) {
-    element.innerHTML += text.charAt(i);
-    await new Promise(resolve => setTimeout(resolve, 80)); // Kasi ya herufi
+  const gridContainer = document.getElementById('js-client-grid');
+
+  function renderClients() {
+      clientList.forEach((client, index) => {
+          const card = document.createElement('div');
+          card.classList.add('client-card-item');
+          card.innerHTML = client;
+          card.style.animationDelay = `${index * 80}ms`;
+          gridContainer.appendChild(card);
+      });
   }
-}
 
-async function runTypingEffect() {
-  const elements = document.querySelectorAll('.typing');
-  for (const el of elements) {
-    await typeWriter(el); // Inasubiri kila laini imalize kabla ya kwenda chini
-  }
-}
-
-// Inafanya kazi ukurasa unapofunguka
-runTypingEffect();
-
-    const clients = [
-  "Pivotech Company Limited",
-  "Radiant Industries Limited",
-  "Prime Care Distillers",
-  "Helios Tower",
-  "Msasani Towers (MMDT)"
-];
-
-const displayElement = document.getElementById('client-display');
-
-function showClients() {
-  let i = 0;
-  function nextClient() {
-    if (i < clients.length) {
-      displayElement.innerHTML = clients[i]; // Inaonyesha client mmoja
-      displayElement.style.opacity = 1; // Animation ya fade-in
-      
-      // Subiri sekunde 2 kisha badilisha
-      setTimeout(() => {
-        displayElement.style.opacity = 0;
-        setTimeout(() => {
-          i++;
-          nextClient();
-        }, 500); // Muda wa kufifia
-      }, 2000);
-    }
-  }
-  nextClient();
-}
-
-showClients();
+  window.addEventListener('DOMContentLoaded', renderClients);
 </script>
 
 </body>
-
 </html>
-

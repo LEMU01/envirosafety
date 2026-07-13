@@ -3,34 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact AEP Enviro Safety</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/contact.css">
+    <title>Contact Us | AEP Enviro Safety</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. GLOBAL STYLES & RESETS
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #ff4500;
+            --secondary: #090264;
+            --dark: #2c3e50;
+            --light: #f4f6f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f4f6f9, #eef1f6);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVBAR (BAR IMELALA UTAMADUNI ULE ULE)
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 4%;
+            background-color: #ffffff;
+            color: black;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo { 
+            width: 40px; 
+            height: auto; 
+        }
+
+        .logo-text { 
+            display: flex; 
+            gap: 3px; 
+            font-size: 13px; 
+            flex-wrap: wrap; 
+        }
+
+        .a, .b { color: var(--secondary); }
+        .c, .e { color: #028d14; }
+        .d { color: var(--primary); }
+
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center;
+        }
+
+        .nav-links a, .team-section a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .team-section a:hover {
+            background-color: rgba(255, 69, 0, 0.1);
+            color: var(--primary);
+        }
+
+        .mobile-team { display: none; }
+
+        /* ==========================================================================
+           3. CONTACT WRAPPER LAYOUT
+           ========================================================================== */
+        .page-container {
+            padding: 60px 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper {
+            background: var(--white);
+            width: 100%;
+            max-width: 1100px;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 15px 45px rgba(9, 2, 100, 0.06);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            border: 1px solid rgba(255, 69, 0, 0.05);
+        }
+
+        /* Upande wa Kushoto - Info */
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-content h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .info-content p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .info-card {
+            background: var(--secondary);
+            color: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(9, 2, 100, 0.15);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item i {
+            font-size: 22px;
+            margin-right: 20px;
+            color: var(--primary);
+            width: 30px;
+            text-align: center;
+        }
+
+        /* Upande wa Kulia - Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eef1f6;
+            border-radius: 12px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: 0.3s ease;
+            background-color: #fcfdfe;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.05);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.4s ease;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.3);
+        }
+
+        button i {
+            margin-left: 8px;
+        }
+
+        /* Kitufe cha WhatsApp */
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            margin-top: 15px;
+            transition: 0.4s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            background-color: #20ba59;
+        }
+
+        .whatsapp-btn i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* ==========================================================================
+           4. MEDIA QUERIES (RESPONSIVE KWA SIMU ZOTE)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 3%;
+            }
+            
+            .logo-text {
+                display: none; 
+            }
+
+            .nav-links {
+                flex-direction: row; 
+                gap: 6px;
+            }
+
+            .nav-links a {
+                padding: 4px 6px;
+                font-size: 12px; 
+            }
+
+            .team-section { display: none; } 
+            .mobile-team { display: block; } 
+
+            .page-container {
+                padding: 30px 4%;
+            }
+
+            .wrapper {
+                grid-template-columns: 1fr !important; /* Inapanga kadi kuwa moja moja kwa wima kwenye simu */
+                gap: 35px;
+                padding: 30px 20px;
+            }
+
+            .info-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .info-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <!-- Sehemu ya Kushoto -->
-    <div class="info-content">
-        <h2>Let's Secure Your Future</h2>
-        <p>Tunapatikana Dar es Salaam, tayari kukuhudumia kwa viwango vya kimataifa.</p>
-        <div class="info-card">
-            <div style="margin-bottom: 20px;"><i class="fas fa-phone-alt"></i> +255 7XX XXX XXX</div>
-            <div style="margin-bottom: 20px;"><i class="fas fa-envelope"></i> info@aepenvirosafety.co.tz</div>
-            <div><i class="fas fa-map-marker-alt"></i> Makao Makuu, Dar es Salaam</div>
-        </div>
+<!-- NAVBAR UNIT -->
+<header class="navbar">
+  <div class="logo-section">
+    <img src="pictures/logo.png" alt="Company Logo" class="logo">
+    <div class="logo-text">
+        <span class="a"><b>AEP</b></span>
+        <span class="b"><b>ENVIRO</b></span>
+        <span class="c"><b>~</b></span>
+        <span class="d"><b>SAFETY</b></span>
+        <span class="e"><b>LIMITED</b></span>
     </div>
+  </div>
 
-    <!-- Sehemu ya Fomu -->
-    <form>
-        <div class="form-group"><input type="text" placeholder="Full Name" required></div>
-        <div class="form-group"><input type="email" placeholder="Email Address" required></div>
-        <div class="form-group"><textarea rows="4" placeholder="How can we help?"></textarea></div>
-        <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
-        <a href="about.html" style="display:block; margin-top:15px; text-align:center; color:var(--dark);">Back to About Us</a>
-    </form>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="client.html">Clients</a>
+    <a href="team.html" class="mobile-team">Team</a>
+  </nav>
+
+  <div class="team-section">
+    <a href="team.html">Our Team</a>
+  </div>
+</header>
+
+<!-- MAIN CONTENT WRAPPER -->
+<div class="page-container">
+    <div class="wrapper">
+        
+        <!-- Left Side: Information Card -->
+        <div class="info-content">
+            <h2>Let's Secure Your Future</h2>
+            <p>Tunapatikana Dar es Salaam, tayari kukuhudumia kwa viwango vya juu na vya kisasa vya usalama.</p>
+            
+            <div class="info-card">
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i> 
+                    <span>+255 629 750 565</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i> 
+                    <span>aepenvirosafetylimited@gmail.com</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span>7971, Ilala, Dar es Salaam</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Interaction Form & Buttons -->
+        <!-- UKIPATA ID YA FORMSPREE, WEKA BADALA YA "WEKA_FORMSPREE_ID_HAPA" -->
+        <form action="https://formspree.io/f/WEKA_FORMSPREE_ID_HAPA" method="POST">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <textarea name="message" rows="4" placeholder="How can we help?" required></textarea>
+            </div>
+            
+            <!-- Send to Email Button -->
+            <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
+            
+            <!-- Direct WhatsApp Button -->
+            <a href="https://wa.me/255629750565?text=Habari%20AEP%20Enviro%20Safety,%20naomba%20kufanya%20mawasiliano%20kuhusu%20huduma%20zenu." target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Chat via WhatsApp
+            </a>
+        </form>
+        
+    </div>
 </div>
 
 </body>
-</html>g
+</html>
