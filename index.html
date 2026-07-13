@@ -1,25 +1,343 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>aep enviro safety ltd</title>
+    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="styles/home.css">
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. CSS YA MSINGI (GLOBAL STYLES & RESETS)
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Inazuia ukurasa kuteleza kushoto/kulia kwenye simu */
+            background-color: #f9f9f9;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVBAR (RESPONSIVE)
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: #ffffff;
+            color: black;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo { 
+            width: 45px; 
+            height: auto; 
+        }
+
+        .logo-text { 
+            display: flex; 
+            gap: 4px; 
+            font-size: 14px; 
+            flex-wrap: wrap; 
+        }
+
+        .a, .b { color: #090264; }
+        .c, .e { color: #028d14; }
+        .d { color: #ff4500; }
+
+        .nav-links { 
+            display: flex; 
+            gap: 15px; 
+        }
+
+        .nav-links a, .team-section a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .team-section a:hover {
+            background-color: rgba(255, 69, 0, 0.1);
+            color: #ff4500;
+        }
+
+        .mobile-team { display: none; } /* Inafichwa kwenye PC */
+
+        /* ==========================================================================
+           3. SWIPER SLIDER (FILTERS & IMAGE POSITION)
+           ========================================================================== */
+        .swiper { 
+            width: 100%; 
+            height: 65vh; /* Inachukua 65% ya urefu wa kioo */
+            min-height: 350px; 
+            position: relative;
+        }
+
+        .swiper-slide img, .swiper-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;        /* Inazuia picha/video kuharibika shape */
+            object-position: top center; /* Inalazimisha ionekane kuanzia JUU ili vichwa visikatike */
+            
+            /* FILTER: Inaboresha muonekano, rangi na kung'aa kwa watu na picha */
+            filter: brightness(0.92) contrast(1.15) saturate(1.05); 
+            transition: filter 0.3s ease;
+        }
+
+        /* Maandishi yaliyo juu ya picha/video */
+        .caption {
+            position: absolute;
+            bottom: 12%;
+            left: 5%;
+            right: 5%;
+            color: white;
+            background: rgba(0, 0, 0, 0.55); /* Giza la nyuma ili maandishi yasomeke vizuri */
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 550px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10;
+            opacity: 0; /* Inaanza ikiwa imefichwa kwa ajili ya animation */
+        }
+
+        .caption h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #ff4500;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .caption p {
+            font-size: 15px;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================================================
+           4. TYPEWRITER (WELCOME TEXT)
+           ========================================================================== */
+        .typewriter-text {
+            text-align: center;
+            color: #ff4500;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #2c3e50;
+            padding: 15px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            font-size: 22px;
+            border-right: 2px solid #006400;
+            animation: blinkCursor 0.75s step-end infinite;
+            border-radius: 10px;
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent }
+            50% { border-color: #ff4500; }
+        }
+
+        /* ==========================================================================
+           5. CARDS (INTRO, VISION, MISSION)
+           ========================================================================== */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap; /* Inaruhusu kadi kushuka chini zikiwa nyingi */
+            gap: 20px;
+            justify-content: center;
+            padding: 20px 5%;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #ff4500;
+            border-radius: 10px;
+            padding: 25px;
+            width: calc(25% - 20px); /* Kadi 4 kwenye PC */
+            min-width: 260px; /* Inazuia kadi isibonyeane sana */
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card:hover { 
+            transform: translateY(-5px); 
+        }
+
+        .card h3 {
+            color: #090264;
+            margin-bottom: 12px;
+        }
+
+        .read-more-btn {
+            background: #ff4500;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .read-more-btn:hover {
+            background: #e64a19;
+        }
+
+        /* ==========================================================================
+           6. SITE FOOTER
+           ========================================================================== */
+        .site-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 40px 5%;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 50px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            border-bottom: 2px solid #ff4500;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer-section p {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ecf0f1;
+        }
+
+        .social-links a {
+            color: #ffcc00;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .social-links a i { margin-right: 10px; }
+
+        .map-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff4500;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .map-button:hover {
+            background-color: #e64a19;
+            transform: scale(1.05);
+        }
+
+        /* ==========================================================================
+           7. MEDIA QUERIES (MAREKEBISHO YA SIMU NA TABLET)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .card { width: calc(50% - 20px); } /* Kadi 2 kwa mstari kwenye Tablet */
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 5px;
+            }
+
+            .nav-links a {
+                background: #f8f9fa;
+                width: 100%;
+                padding: 10px;
+            }
+
+            .team-section { display: none; } /* Tunaficha ya pembeni */
+            .mobile-team { display: block; } /* Tunaiweka ndani ya menu ya simu */
+
+            .swiper { 
+                height: 45vh; /* Slider inakuwa fupi kidogo kwenye simu ili ikae vizuri */
+            }
+            
+            .swiper-slide img, .swiper-slide video {
+                object-position: center top; /* Bado inalazimisha kuona sehemu ya juu (watu) */
+            }
+
+            .caption {
+                bottom: 5%;
+                padding: 12px;
+            }
+            
+            .caption h1 { font-size: 16px; }
+            .caption p { font-size: 12px; }
+            
+            .typewriter-text { font-size: 16px; }
+            .card { width: 100%; } /* Kadi 1 kwa mstari kwenye simu */
+            
+            .site-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-   <header class="navbar">
+
+<header class="navbar">
   <div class="logo-section">
     <img src="pictures/logo.png" alt="Company Logo" class="logo">
-    <span class="a"><b>AEP</b></span>
-    <span class="b"><b>ENVIRO</b></span>
-    <span class="c"><b>~</b></span>
-    <span class="d"><b>SAFETY</b></span>
-    <span class="e"><b>LIMITED</b></span>
+    <div class="logo-text">
+        <span class="a"><b>AEP</b></span>
+        <span class="b"><b>ENVIRO</b></span>
+        <span class="c"><b>~</b></span>
+        <span class="d"><b>SAFETY</b></span>
+        <span class="e"><b>LIMITED</b></span>
+    </div>
   </div>
 
   <nav class="nav-links">
@@ -28,6 +346,7 @@
     <a href="services.html">Services</a>
     <a href="contact.html">Contact</a>
     <a href="client.html">Clients</a>
+    <a href="team.html" class="mobile-team">Our Team</a>
   </nav>
 
   <div class="team-section">
@@ -38,167 +357,122 @@
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-        <img src="pictures/F.jpeg" />
+        <img src="pictures/F.jpeg" alt="Fire Safety"/>
         <div class="caption">
-            <h1></h1>
-            <p></p>
+            <h1>Expert Fire Solutions</h1>
+            <p>High-quality emergency preparedness equipment.</p>
         </div>
     </div>
 
     <div class="swiper-slide">
-        <img src="pictures/kipeperushi.png" />
+        <img src="pictures/kipeperushi.png" alt="Flyer"/>
          <div class="caption">
-            <h1></h1>
-            <p></p>
+            <h1>HSE Services</h1>
+            <p>Environmental and safety training workshops.</p>
         </div>
     </div>
     
     <div class="swiper-slide">
-       <video autoplay muted loop>
-        <source src="pictures/vid1.mp4" type="video/mp4">
-    </video>
-     <div class="caption">
+       <!-- playsinline inazuia video kufunguka full screen yenyewe kwenye simu -->
+       <video autoplay muted loop playsinline>
+            <source src="pictures/vid1.mp4" type="video/mp4">
+       </video>
+       <div class="caption">
             <h1>AEP ENVIRO~SAFETY LIMITED</h1>
-            <p>The safety of people
-                 and their properties 
-                 is our priority</p>
+            <p>The safety of people and their properties is our priority</p>
         </div>
     </div>
 
     <div class="swiper-slide">
-        <img src="pictures/f2.jpeg" />
+        <img src="pictures/f2.jpeg" alt="Safety Gear"/>
          <div class="caption">
-            <h1></h1>
-            <p></p>
+            <h1>Protected Environment</h1>
+            <p>We keep organizations prosperous and safe.</p>
         </div>
     </div>
 
     <div class="swiper-slide">
-       <video autoplay muted loop>
-        <source src="pictures/vid2.mp4" type="video/mp4">
-         <div class="caption">
-            <h1></h1>
-            <p></p>
+       <video autoplay muted loop playsinline>
+            <source src="pictures/vid2.mp4" type="video/mp4">
+       </video>
+       <div class="caption">
+            <h1>On-Site Training</h1>
+            <p>Professional guidance and equipment testing.</p>
         </div>
-    </video>
     </div>
-
   </div>
-
-  <!-- Navigation buttons -->
-  <!-- <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div> -->
 </div>
 
-
-<h1 class="typewriter-text" id="typing-tSitle"></h1>
-
-<!-- <h1 class="main-title">
-  <span class="welcome-text">WELCOME</span>
-  <span class="our-text">TO OUR</span> 
-  <span class="company-text">COMPANY</span>
-</h1> -->
+<h1 class="typewriter-text" id="typing-title"></h1>
 
 <div class="card-container">
-  <!-- Card 1 -->
-<div class="card">
-  <h3>INTRODUCTION</h3>
-  <p class="card-text">
-    <span class="short-text">AEP Enviro safety Limited is a Tanzanian Company Registered
-by Business Registration and Licensing Agency (BRELA)....</span>
-    <span class="full-text" style="display: none;">AEP Enviro safety Limited is a Tanzanian Company Registered
-by Business Registration and Licensing Agency (BRELA) as a
-Business Name incorporated in Tanzania with registration
-Certificate No. 177166286.
-The company conducts its business legally with business license
-No. BL01396902024-25000 11116 and Taxpayer Identification
-Number (TIN) 177-166-286</span>
-  </p>
-  <button class="read-more-btn" onclick="toggleText(this)">Read More</button>
-</div>
+  <div class="card">
+    <h3>INTRODUCTION</h3>
+    <p class="card-text">
+      <span class="short-text">AEP Enviro safety Limited is a Tanzanian Company Registered by Business Registration and Licensing Agency (BRELA)....</span>
+      <span class="full-text" style="display: none;">AEP Enviro safety Limited is a Tanzanian Company Registered by Business Registration and Licensing Agency (BRELA) as a Business Name incorporated in Tanzania with registration Certificate No. 177166286. The company conducts its business legally with business license No. BL01396902024-25000 11116 and Taxpayer Identification Number (TIN) 177-166-286</span>
+    </p>
+    <button class="read-more-btn" onclick="toggleText(this)">Read More</button>
+  </div>
 
-<div class="card">
-  <h3>VISION</h3>
-  <p class="card-text">
-    <span class="short-text">To save lives, protect property, Environment and keep
-organizations prosperou...</span>
-    <span class="full-text" style="display: none;">To save lives, protect property, Environment and keep
-organizations prosperou.</span>
-  </p>
-  <button class="read-more-btn" onclick="toggleText(this)">Read More</button>
-</div>
+  <div class="card">
+    <h3>VISION</h3>
+    <p class="card-text">
+      <span class="short-text">To save lives, protect property, Environment and keep organizations prosperou...</span>
+      <span class="full-text" style="display: none;">To save lives, protect property, Environment and keep organizations prosperou.</span>
+    </p>
+    <button class="read-more-btn" onclick="toggleText(this)">Read More</button>
+  </div>
 
-<div class="card">
-  <h3>MISSION</h3>
-  <p class="card-text">
-    <span class="short-text">AEP Enviro safety Limited is committed to safely providing high
-quality and valuable fire protection and HSE services for our
-customers...</span>
-    <span class="full-text" style="display: none;">AEP Enviro safety Limited is committed to safely providing high
-quality and valuable fire protection and HSE services for our
-customers.
-We will work with our employees to discover opportunities for
-their continued growth and expect the highest levels of integrity
-in return. We will contribute to our communities for their
-betterment. Our financial success will be through satisfied
-customers, employees and communities.
-AEP Enviro safety Limited adheres to these values. 
-• Safety is a part of everything we do. 
-• Integrity is how we conduct ourselves. 
-• Commitment is what we have to our customers, employees and 
- communities.</span>
-  </p>
-  <button class="read-more-btn" onclick="toggleText(this)">Read More</button>
-</div>
+  <div class="card">
+    <h3>MISSION</h3>
+    <p class="card-text">
+      <span class="short-text">AEP Enviro safety Limited is committed to safely providing high quality and valuable fire protection and HSE services for our customers...</span>
+      <span class="full-text" style="display: none;">AEP Enviro safety Limited is committed to safely providing high quality and valuable fire protection and HSE services for our customers. We will work with our employees to discover opportunities for their continued growth and expect the highest levels of integrity in return.</span>
+    </p>
+    <button class="read-more-btn" onclick="toggleText(this)">Read More</button>
+  </div>
 
-<div class="card">
-  <h3>OUR VALUES</h3>
-  <p class="card-text">
-    <span class="short-text">AEP Enviro safety Limited adheres to these values...</span>
-    <span class="full-text" style="display: none;">AEP Enviro safety Limited adheres to these values. 
-• Safety is a part of everything we do. 
-• Integrity is how we conduct ourselves. 
-• Commitment is what we have to our customers, employees and 
- communities. 
-• Growth is what enables us to keep step with our ever-changing world</span>
-  </p>
-  <button class="read-more-btn" onclick="toggleText(this)">Read More</button>
-</div>
-
+  <div class="card">
+    <h3>OUR VALUES</h3>
+    <p class="card-text">
+      <span class="short-text">AEP Enviro safety Limited adheres to these values...</span>
+      <span class="full-text" style="display: none;">AEP Enviro safety Limited adheres to these values. • Safety is a part of everything we do. • Integrity is how we conduct ourselves. • Commitment is what we have to our customers, employees and communities. • Growth is what enables us to keep step with our ever-changing world</span>
+    </p>
+    <button class="read-more-btn" onclick="toggleText(this)">Read More</button>
+  </div>
 </div>
 
 <footer class="site-footer">
-  <!-- Mawasiliano -->
   <div class="footer-section">
     <h3>CONTACT US</h3>
-    <p>Adress: 7971, ilala, Dar es Salaam</p>
+    <p>Address: 7971, ilala, Dar es Salaam</p>
     <p>Email: aepenvirosafetylimited@gmail.com</p>
-    <p>+255 629 750 565 | +255 679 852 407 | +255 764 783 810 </p>
-  
-    
-
+    <p>+255 629 750 565 | +255 679 852 407</p>
   </div>
 
-  <!-- Social Media -->
   <div class="footer-section">
     <h3>FIND US</h3>
     <div class="social-links">
-  <a href="https://www.instagram.com/aepenvirosafety_limited?igsh=MWlidHk4M3lta3E1Yg==" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
-  <a href="https://www.facebook.com/share/1CtWdNpsDn/" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
-  <a href="https://www.tiktok.com/@aep_envirosafety_ltd?_r=1&_t=ZS-97mKq6ficXC" target="_blank"><i class="fab fa-tiktok"></i>Tiktok</a>
-  <a href="https://youtube.com/@aepenvirosafetytv?si=t32CdqmFd0QKTwd1" target="_blank"><i class="fab fa-youtube"></i>Youtube</a>
-</div>
+      <a href="https://www.instagram.com/aepenvirosafety_limited" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+      <a href="https://www.facebook.com/share/1CtWdNpsDn/" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
+      <a href="https://www.tiktok.com/@aep_envirosafety_ltd" target="_blank"><i class="fab fa-tiktok"></i>Tiktok</a>
+      <a href="https://youtube.com/@aepenvirosafetytv" target="_blank"><i class="fab fa-youtube"></i>Youtube</a>
+    </div>
   </div>
 
-  <!-- Location (Map) -->
-<div class="footer-section">
-  <h3>OUR LOCATION</h3>
-  <a href="https://maps.app.goo.gl/ABEycT368HNoEjKw9" target="_blank" class="map-button">
-    <i class="fas fa-map-marker-alt"></i> Open on map
-  </a>
-</div>
+  <div class="footer-section">
+    <h3>OUR LOCATION</h3>
+    <a href="https://maps.app.goo.gl/ABEycT368HNoEjKw9" target="_blank" class="map-button">
+      <i class="fas fa-map-marker-alt"></i> Open on map
+    </a>
+  </div>
+</footer>
 
+<!-- Swiper JavaScript -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+  // 1. Typewriter Effect
   const text = "WELCOME TO OUR COMPANY";
   const el = document.getElementById('typing-title');
   let i = 0;
@@ -207,9 +481,8 @@ AEP Enviro safety Limited adheres to these values.
     if (i < text.length) {
       el.innerHTML += text.charAt(i);
       i++;
-      setTimeout(typeWriter, 100); // Muda kati ya herufi (100ms)
+      setTimeout(typeWriter, 100);
     } else {
-      // Hiari: Rudia baada ya sekunde chache
       setTimeout(() => {
         el.innerHTML = "";
         i = 0;
@@ -217,64 +490,54 @@ AEP Enviro safety Limited adheres to these values.
       }, 3000); 
     }
   }
-
-  
-  // Anza kuandika ukurasa unapofunguliwa
   window.onload = typeWriter;
-</script>
 
-<script>
- var swiper = new Swiper(".mySwiper", {
-  autoplay: { delay: 4000 },
-  on: {
-    slideChangeTransitionStart: function () {
-      // Ficha caption zote kwanza
-      document.querySelectorAll('.caption').forEach(el => el.style.opacity = 0);
-    },
-    slideChangeTransitionEnd: function () {
-      // Onyesha caption ya slide inayofuata
-      this.slides[this.activeIndex].querySelector('.caption').style.opacity = 1;
+  // 2. Swiper Initialization na Animation za Caption
+  var swiper = new Swiper(".mySwiper", {
+    autoplay: { delay: 4000 },
+    loop: true,
+    on: {
+      init: function() {
+        // Washa caption ya kwanza kabisa kurasa ikifunguka
+        setTimeout(() => {
+          let firstCaption = document.querySelector('.swiper-slide-active .caption');
+          if(firstCaption) firstCaption.style.animation = 'fadeInUp 0.8s ease forwards';
+        }, 100);
+      },
+      slideChange: function () {
+        let captions = document.querySelectorAll('.caption');
+        captions.forEach(cap => { 
+            cap.style.animation = 'none'; 
+            cap.style.opacity = '0';
+        });
+
+        setTimeout(() => {
+          let activeSlide = this.slides[this.activeIndex];
+          if(activeSlide) {
+            let cap = activeSlide.querySelector('.caption');
+            if(cap) cap.style.animation = 'fadeInUp 0.8s ease forwards';
+          }
+        }, 50);
+      }
     }
-  }
-});
+  });
 
+  // 3. Read More / Read Less Function
   function toggleText(button) {
-  // Tunapata element iliyo karibu na button (card-text)
-  let card = button.parentElement;
-  let fullText = card.querySelector('.full-text');
-  let shortText = card.querySelector('.short-text');
+    let card = button.parentElement;
+    let fullText = card.querySelector('.full-text');
+    let shortText = card.querySelector('.short-text');
 
-  if (fullText.style.display === "none") {
-    fullText.style.display = "inline"; // Inaonyesha text
-    shortText.style.display = "none";  // Inaficha text fupi
-    button.textContent = "Read Less";  // Inabadilisha neno la button
-  } else {
-    fullText.style.display = "none";
-    shortText.style.display = "inline";
-    button.textContent = "Read More";
-  }
-}
-
-var swiper = new Swiper(".mySwiper", {
-  autoplay: { delay: 4000 },
-  on: {
-    slideChange: function () {
-      // Tunachagua caption zote
-      let captions = document.querySelectorAll('.caption');
-      
-      // Tunazifuta animation zote kwanza
-      captions.forEach(cap => {
-        cap.style.animation = 'none';
-      });
-
-      // Tunaiwasha animation ya caption ya slide iliyopo sasa
-      setTimeout(() => {
-        this.slides[this.activeIndex].querySelector('.caption').style.animation = 'fadeInUp 0.8s ease forwards';
-      }, 10);
+    if (fullText.style.display === "none") {
+      fullText.style.display = "inline";
+      shortText.style.display = "none";
+      button.textContent = "Read Less";
+    } else {
+      fullText.style.display = "none";
+      shortText.style.display = "inline";
+      button.textContent = "Read More";
     }
   }
-});
 </script>
-
 </body>
 </html>
