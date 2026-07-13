@@ -11,7 +11,7 @@
     
     <style>
         /* ==========================================================================
-           1. CSS YA MSINGI (GLOBAL STYLES & RESETS)
+           1. GLOBAL STYLES & RESETS
            ========================================================================== */
         * {
             box-sizing: border-box;
@@ -21,38 +21,41 @@
 
         body {
             font-family: Arial, sans-serif;
-            overflow-x: hidden; /* Inazuia ukurasa kuteleza kushoto/kulia kwenye simu */
+            overflow-x: hidden;
             background-color: #f9f9f9;
         }
 
         /* ==========================================================================
-           2. HEADER & NAVBAR (RESPONSIVE)
+           2. HEADER & NAVBAR (LAINI NA IME_LALA KWENYE SIMU NA PC)
            ========================================================================== */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
+            padding: 10px 4%;
             background-color: #ffffff;
             color: black;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Inakaa juu ya kila kitu ukiscroll */
         }
 
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .logo { 
-            width: 45px; 
+            width: 40px; 
             height: auto; 
         }
 
         .logo-text { 
             display: flex; 
-            gap: 4px; 
-            font-size: 14px; 
+            gap: 3px; 
+            font-size: 13px; 
             flex-wrap: wrap; 
         }
 
@@ -62,15 +65,17 @@
 
         .nav-links { 
             display: flex; 
-            gap: 15px; 
+            gap: 10px; 
+            align-items: center;
         }
 
         .nav-links a, .team-section a {
             text-decoration: none;
             color: black;
             font-weight: bold;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 5px;
+            font-size: 14px;
             transition: all 0.3s ease;
         }
 
@@ -79,54 +84,52 @@
             color: #ff4500;
         }
 
-        .mobile-team { display: none; } /* Inafichwa kwenye PC */
+        .mobile-team { display: none; }
 
         /* ==========================================================================
-           3. SWIPER SLIDER (FILTERS & IMAGE POSITION)
+           3. SWIPER SLIDER (FULL SCREEN KWENYE PC)
            ========================================================================== */
         .swiper { 
             width: 100%; 
-            height: 65vh; /* Inachukua 65% ya urefu wa kioo */
-            min-height: 350px; 
+            height: 100vh; /* FULL SCREEN: Inajaza kioo chote cha PC hadi chini */
             position: relative;
         }
 
         .swiper-slide img, .swiper-slide video {
             width: 100%;
             height: 100%;
-            object-fit: cover;        /* Inazuia picha/video kuharibika shape */
-            object-position: top center; /* Inalazimisha ionekane kuanzia JUU ili vichwa visikatike */
+            object-fit: cover;        
+            object-position: top center; /* Inalazimisha vichwa vya watu vionekane vizuri */
             
-            /* FILTER: Inaboresha muonekano, rangi na kung'aa kwa watu na picha */
+            /* FILTER: Inaboresha rangi, mwanga na muonekano */
             filter: brightness(0.92) contrast(1.15) saturate(1.05); 
-            transition: filter 0.3s ease;
         }
 
-        /* Maandishi yaliyo juu ya picha/video */
+        /* Maandishi yaliyo juu ya slider */
         .caption {
             position: absolute;
-            bottom: 12%;
+            bottom: 15%;
             left: 5%;
             right: 5%;
             color: white;
-            background: rgba(0, 0, 0, 0.55); /* Giza la nyuma ili maandishi yasomeke vizuri */
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.55); 
+            padding: 25px;
             border-radius: 8px;
             max-width: 550px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             z-index: 10;
-            opacity: 0; /* Inaanza ikiwa imefichwa kwa ajili ya animation */
+            opacity: 0;
         }
 
         .caption h1 {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 8px;
             color: #ff4500;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
 
         .caption p {
-            font-size: 15px;
+            font-size: 16px;
             line-height: 1.4;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
@@ -143,7 +146,7 @@
         }
 
         /* ==========================================================================
-           4. TYPEWRITER (WELCOME TEXT)
+           4. TYPEWRITER EFFECT
            ========================================================================== */
         .typewriter-text {
             text-align: center;
@@ -151,7 +154,7 @@
             font-family: 'Times New Roman', Times, serif;
             background-color: #2c3e50;
             padding: 15px;
-            margin: 20px auto;
+            margin: 30px auto;
             width: 90%;
             max-width: 1200px;
             font-size: 22px;
@@ -166,11 +169,11 @@
         }
 
         /* ==========================================================================
-           5. CARDS (INTRO, VISION, MISSION)
+           5. CARDS SECTION
            ========================================================================== */
         .card-container {
             display: flex;
-            flex-wrap: wrap; /* Inaruhusu kadi kushuka chini zikiwa nyingi */
+            flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
             padding: 20px 5%;
@@ -181,21 +184,15 @@
             border: 1px solid #ff4500;
             border-radius: 10px;
             padding: 25px;
-            width: calc(25% - 20px); /* Kadi 4 kwenye PC */
-            min-width: 260px; /* Inazuia kadi isibonyeane sana */
+            width: calc(25% - 20px); 
+            min-width: 260px;
             text-align: center;
             transition: transform 0.3s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .card:hover { 
-            transform: translateY(-5px); 
-        }
-
-        .card h3 {
-            color: #090264;
-            margin-bottom: 12px;
-        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { color: #090264; margin-bottom: 12px; }
 
         .read-more-btn {
             background: #ff4500;
@@ -206,15 +203,10 @@
             border-radius: 4px;
             margin-top: 15px;
             font-weight: bold;
-            transition: background 0.2s;
-        }
-
-        .read-more-btn:hover {
-            background: #e64a19;
         }
 
         /* ==========================================================================
-           6. SITE FOOTER
+           6. FOOTER SECTION
            ========================================================================== */
         .site-footer {
             display: flex;
@@ -226,34 +218,12 @@
             margin-top: 50px;
         }
 
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .footer-section h3 {
-            border-bottom: 2px solid #ff4500;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .footer-section p {
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #ecf0f1;
-        }
-
-        .social-links a {
-            color: #ffcc00;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { border-bottom: 2px solid #ff4500; padding-bottom: 10px; margin-bottom: 15px; }
+        .footer-section p { margin-bottom: 8px; font-size: 14px; }
+        .social-links a { color: #ffcc00; text-decoration: none; display: block; margin-bottom: 8px; }
         .social-links a i { margin-right: 10px; }
-
+        
         .map-button {
             display: inline-block;
             padding: 10px 20px;
@@ -262,67 +232,54 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s;
             margin-top: 10px;
-        }
-
-        .map-button:hover {
-            background-color: #e64a19;
-            transform: scale(1.05);
         }
 
         /* ==========================================================================
            7. MEDIA QUERIES (MAREKEBISHO YA SIMU NA TABLET)
            ========================================================================== */
         @media (max-width: 992px) {
-            .card { width: calc(50% - 20px); } /* Kadi 2 kwa mstari kwenye Tablet */
+            .card { width: calc(50% - 20px); }
         }
 
         @media (max-width: 768px) {
+            /* Navbar inabaki imelala (Horizontal) badala ya kuwa wima */
             .navbar {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
+                padding: 10px 3%;
             }
             
+            .logo-text {
+                display: none; /* Tunaficha maandishi marefu ya logo kwenye simu ili isijaze nafasi */
+            }
+
             .nav-links {
-                flex-direction: column;
-                width: 100%;
-                gap: 5px;
+                flex-direction: row; /* Hapa inalazimisha menu kubaki zimelala pembeni */
+                gap: 6px;
             }
 
             .nav-links a {
-                background: #f8f9fa;
-                width: 100%;
-                padding: 10px;
+                padding: 4px 6px;
+                font-size: 12px; /* Maandishi yanakuwa madogo kidogo ili yafit vizuri */
             }
 
-            .team-section { display: none; } /* Tunaficha ya pembeni */
-            .mobile-team { display: block; } /* Tunaiweka ndani ya menu ya simu */
+            .team-section { display: none; } 
+            .mobile-team { display: block; } /* Team inaingia kwenye mstari huo huo uliolala */
 
+            /* Kwenye simu slider haijazi kioo chote ili mtumiaji aone kuna vitu chini */
             .swiper { 
-                height: 45vh; /* Slider inakuwa fupi kidogo kwenye simu ili ikae vizuri */
-            }
-            
-            .swiper-slide img, .swiper-slide video {
-                object-position: center top; /* Bado inalazimisha kuona sehemu ya juu (watu) */
+                height: 55vh; 
             }
 
             .caption {
                 bottom: 5%;
                 padding: 12px;
             }
-            
             .caption h1 { font-size: 16px; }
             .caption p { font-size: 12px; }
             
-            .typewriter-text { font-size: 16px; }
-            .card { width: 100%; } /* Kadi 1 kwa mstari kwenye simu */
-            
-            .site-footer {
-                flex-direction: column;
-                text-align: center;
-            }
+            .typewriter-text { font-size: 15px; }
+            .card { width: 100%; } 
+            .site-footer { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -346,7 +303,7 @@
     <a href="services.html">Services</a>
     <a href="contact.html">Contact</a>
     <a href="client.html">Clients</a>
-    <a href="team.html" class="mobile-team">Our Team</a>
+    <a href="team.html" class="mobile-team">Team</a>
   </nav>
 
   <div class="team-section">
@@ -373,7 +330,6 @@
     </div>
     
     <div class="swiper-slide">
-       <!-- playsinline inazuia video kufunguka full screen yenyewe kwenye simu -->
        <video autoplay muted loop playsinline>
             <source src="pictures/vid1.mp4" type="video/mp4">
        </video>
@@ -492,13 +448,12 @@
   }
   window.onload = typeWriter;
 
-  // 2. Swiper Initialization na Animation za Caption
+  // 2. Swiper & Animations
   var swiper = new Swiper(".mySwiper", {
     autoplay: { delay: 4000 },
     loop: true,
     on: {
       init: function() {
-        // Washa caption ya kwanza kabisa kurasa ikifunguka
         setTimeout(() => {
           let firstCaption = document.querySelector('.swiper-slide-active .caption');
           if(firstCaption) firstCaption.style.animation = 'fadeInUp 0.8s ease forwards';
@@ -522,7 +477,7 @@
     }
   });
 
-  // 3. Read More / Read Less Function
+  // 3. Read More
   function toggleText(button) {
     let card = button.parentElement;
     let fullText = card.querySelector('.full-text');
