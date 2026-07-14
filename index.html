@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aep enviro safety ltd</title>
+    <title>AEP Enviro Safety Ltd</title>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <!-- Font Awesome (Icons) -->
@@ -87,7 +87,7 @@
         .mobile-team { display: none; }
 
         /* ==========================================================================
-           3. SWIPER SLIDER (MODERN BLUR BACKGROUND - NO BLACK BARS)
+           3. SWIPER SLIDER (NO BLACK BARS - FULL SCREEN VIDEO COVER)
            ========================================================================== */
         .swiper { 
             width: 100%; 
@@ -107,7 +107,7 @@
             overflow: hidden;
         }
 
-        /* HAPA NDIO TUNAFUTA WEUSI: Picha ya nyuma inayowekwa ukungu na kujaza skrini */
+        /* Picha ya nyuma inayowekwa ukungu (Blur Effect kwa Picha pekee) */
         .slide-bg {
             position: absolute;
             top: 0;
@@ -116,46 +116,63 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            filter: blur(20px) brightness(0.5); /* Inaleta ukungu mnene na kuifanya iwe giza kidogo */
-            transform: scale(1.1); /* Inazuia kingo za blur kuonekana nyeupe */
+            filter: blur(20px) brightness(0.4); 
+            transform: scale(1.1); 
             z-index: 1;
         }
 
-        /* Maudhui ya mbele (Picha au Video halisi safi) */
+        /* Kasha la mbele la picha au video */
         .slide-content {
             position: relative;
             z-index: 5;
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0; /* Padding imefutwa kabisa ili video iguse kingo zote */
         }
 
-        .slide-content img, .slide-content video {
+        /* Sura na Mpangilio wa Video - Zinafuta Weusi Pembeni na Kujaza Skrini */
+        .slide-content video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important; /* Hii inafuta weusi na kulazimisha video ijae skrini nzima */
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            background-color: #000;
+            transform: scale(1);
+            transition: none;
+        }
+
+        /* Picha ya mbele pekee (Inabaki na Contain ili isikatike sura) */
+        .slide-content img {
             max-width: 100%;
             max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;        
+            width: 100%;
+            height: 100%;
+            object-fit: cover;        
             filter: brightness(0.95) contrast(1.1) saturate(1.05); 
-            box-shadow: 0 0 30px rgba(0,0,0,0.5); /* Kivuli laini pembeni ya picha kuu */
-            
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 8px;
             transform: scale(1);
             transition: transform 0.5s ease;
         }
 
-        /* Kujongea (Zoom Effect) kwa picha ya mbele pekee */
-        .swiper-slide-active .slide-content img, 
+        /* Kujongea (Zoom Effect) - Kwenye picha tu */
+        .swiper-slide-active .slide-content img {
+            animation: zoomEffect 8s linear forwards; 
+        }
+
+        /* Kuzuia Zoom isitokee kwenye video */
         .swiper-slide-active .slide-content video {
-            animation: zoomEffect 6s linear forwards;
+            animation: none !important;
+            transform: scale(1); 
         }
 
         @keyframes zoomEffect {
             from { transform: scale(1); }
-            to { transform: scale(1.1); }
+            to { transform: scale(1.06); }
         }
 
         /* Maandishi yaliyo juu ya slider */
@@ -165,32 +182,38 @@
             left: 5%;
             right: 5%;
             color: white;
-            background: rgba(0, 0, 0, 0.65); 
+            background: rgba(9, 2, 100, 0.8); 
+            border-left: 5px solid #ff4500; 
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 0 12px 12px 0;
             max-width: 550px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             z-index: 20; 
             opacity: 0;
+        }
+
+        /* Maandishi yanapofunguka */
+        .swiper-slide-active .caption {
+            animation: fadeInUp 0.8s ease 0.5s forwards; 
         }
 
         .caption h1 {
             font-size: 24px;
             margin-bottom: 6px;
             color: #ff4500;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            font-weight: 700;
         }
 
         .caption p {
             font-size: 15px;
-            line-height: 1.4;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            line-height: 1.5;
+            color: #f4f6f9;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -305,14 +328,14 @@
 
             .swiper { height: 50vh; }
 
-            /* Kwenye simu tunazima kabisa blur background ili isichukue chaji na kufanya simu iwe nzito */
+            /* Kwenye simu tunazima blur background */
             .slide-bg { display: none; }
 
             .slide-content { width: 100%; height: 100%; }
             .slide-content img, .slide-content video {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
                 animation: none !important; 
             }
 
@@ -358,9 +381,8 @@
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
 
-    <!-- Slide 3 (Video1) -->
+    <!-- Slide 1 (Video1) -->
     <div class="swiper-slide">
-        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
            <video autoplay muted loop playsinline>
@@ -373,9 +395,8 @@
         </div>
     </div>
 
-    <!-- Slide 3 (Video2) -->
+    <!-- Slide 2 (Video2) -->
     <div class="swiper-slide">
-        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
            <video autoplay muted loop playsinline>
@@ -388,11 +409,9 @@
         </div>
     </div>
     
-    <!-- Slide 1 -->
+    <!-- Slide 3 (Picha) -->
     <div class="swiper-slide">
-        <!-- Hii ndio picha ya nyuma inayofuta weusi -->
         <div class="slide-bg" style="background-image: url('pictures/F.jpeg');"></div>
-        <!-- Hii ndio picha halisi ya mbele -->
         <div class="slide-content">
             <img src="pictures/F.jpeg" alt="Fire Safety"/>
         </div>
@@ -402,9 +421,8 @@
         </div>
     </div>
 
-    <!-- Slide 3 (Video3) -->
+    <!-- Slide 4 (Video3) -->
     <div class="swiper-slide">
-        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
            <video autoplay muted loop playsinline>
@@ -417,7 +435,7 @@
         </div>
     </div>
 
-    <!-- Slide 2 -->
+    <!-- Slide 5 (Picha) -->
     <div class="swiper-slide">
         <div class="slide-bg" style="background-image: url('pictures/kipeperushi.png');"></div>
         <div class="slide-content">
@@ -428,9 +446,9 @@
             <p>Environmental and safety training workshops.</p>
         </div>
     </div>
-    <!-- Slide 3 (Video7) -->
+
+    <!-- Slide 6 (Video7) -->
     <div class="swiper-slide">
-        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
            <video autoplay muted loop playsinline>
@@ -443,9 +461,8 @@
         </div>
     </div>
     
-    <!-- Slide 3 (Video) -->
+    <!-- Slide 7 (Video) -->
     <div class="swiper-slide">
-        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
            <video autoplay muted loop playsinline>
@@ -458,9 +475,8 @@
         </div>
     </div>
 
-    <!-- Slide 3 (Video4) -->
+    <!-- Slide 8 (Video4) -->
     <div class="swiper-slide">
-        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
            <video autoplay muted loop playsinline>
@@ -473,7 +489,7 @@
         </div>
     </div>
 
-    <!-- Slide 4 -->
+    <!-- Slide 9 (Picha) -->
     <div class="swiper-slide">
         <div class="slide-bg" style="background-image: url('pictures/f2.jpeg');"></div>
         <div class="slide-content">
@@ -485,9 +501,8 @@
         </div>
     </div>
 
-    <!-- Slide 3 (Video5) -->
+    <!-- Slide 10 (Video5) -->
     <div class="swiper-slide">
-        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
            <video autoplay muted loop playsinline>
@@ -500,7 +515,7 @@
         </div>
     </div>
 
-    <!-- Slide 5 (Video 2) -->
+    <!-- Slide 11 (Video 2) -->
     <div class="swiper-slide">
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
@@ -514,9 +529,8 @@
         </div>
     </div>
 
-    <!-- Slide 3 (Video6) -->
+    <!-- Slide 12 (Video6) -->
     <div class="swiper-slide">
-        <!-- Kwa video, tunaweka tu picha mbadala ya giza kwa nyuma ili isilete uzito wa mzigo wa ku-play video mbili -->
         <div class="slide-bg" style="background-color: #1a1a1a;"></div>
         <div class="slide-content">
            <video autoplay muted loop playsinline>
