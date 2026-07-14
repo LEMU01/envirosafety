@@ -1,0 +1,284 @@
+/* ==========================================================================
+           1. GLOBAL STYLES & RESETS
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #ff4500;
+            --secondary: #090264;
+            --dark: #2c3e50;
+            --light: #f4f6f9;
+            --white: #ffffff;
+            --glass-card: rgba(255, 255, 255, 0.85);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f4f6f9, #eef1f6);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVBAR (BAR IMELALA UTAMADUNI ULE ULE)
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 4%;
+            background-color: #ffffff;
+            color: black;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo { 
+            width: 40px; 
+            height: auto; 
+        }
+
+        .logo-text { 
+            display: flex; 
+            gap: 3px; 
+            font-size: 13px; 
+            flex-wrap: wrap; 
+        }
+
+        .a, .b { color: var(--secondary); }
+        .c, .e { color: #028d14; }
+        .d { color: var(--primary); }
+
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center;
+        }
+
+        .nav-links a, .team-section a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .team-section a:hover {
+            background-color: rgba(255, 69, 0, 0.1);
+            color: var(--primary);
+        }
+
+        .mobile-team { display: none; }
+
+        /* ==========================================================================
+           3. HERO BANNER
+           ========================================================================== */
+  
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           4. TEAM GRID & GLASS CARDS
+           ========================================================================== */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        /* Muonekano wa Glasi Ulioboreshwa */
+        .card { 
+            background: var(--glass-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(9, 2, 100, 0.05);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        background-color 0.5s ease, 
+                        box-shadow 0.5s ease;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            color: var(--secondary);
+            margin-bottom: 6px;
+            font-weight: 700;
+            transition: color 0.4s ease;
+        }
+
+        .card .role {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.4s ease;
+        }
+
+        /* Hover Effect - Inabadilika kwenda kwenye rangi ya Kampuni badala ya nyekundu */
+        .card:hover { 
+            transform: translateY(-15px) scale(1.02); 
+            background: var(--secondary);
+            box-shadow: 0 15px 35px rgba(9, 2, 100, 0.25);
+            border-color: var(--secondary);
+        }
+
+        .card:hover h3 {
+            color: var(--white);
+        }
+
+        .card:hover .role {
+            color: #ffaa85; /* Rangi ya machungwa hafifu ili ing'ae vizuri juu ya bluu */
+        }
+        
+        /* Frame ya Picha ya Duara */
+        .img-box { 
+            width: 140px; 
+            height: 140px; 
+            border-radius: 50%; 
+            margin: 0 auto 25px; 
+            overflow: hidden; 
+            border: 4px solid var(--white); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .img-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit:cover;
+            object-position: top;
+            filter: brightness(1.1) contrast(1.1) saturate(1.2);
+        /* Unaweza kuongeza transition ili picha ing'ae mtu akielekeza mouse (hover) */
+         
+        }
+       
+        .card:hover .img-box {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        /* ==========================================================================
+           5. SCROLL INTERACTION ANIMATIONS (FADE IN)
+           ========================================================================== */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(40px); 
+            transition: opacity 0.8s ease, transform 0.8s ease; 
+        }
+        
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* Bottom Navigation Button */
+        .btn-container {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .btn-home { 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 35px; 
+            background: var(--primary); 
+            border-radius: 50px; 
+            color: var(--white); 
+            text-decoration: none; 
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-home:hover {
+            background: #e64a19;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 69, 0, 0.4);
+        }
+
+        /* ==========================================================================
+           6. MEDIA QUERIES (RESPONSIVE FOR ALL SCREEN SIZES)
+           ========================================================================== */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 10px 3%;
+            }
+            
+            .logo-text {
+                display: none; 
+            }
+
+            .nav-links {
+                flex-direction: row; 
+                gap: 6px;
+            }
+
+            .nav-links a {
+                padding: 4px 6px;
+                font-size: 12px; 
+            }
+
+            .team-section { display: none; } 
+            .mobile-team { display: block; } 
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr !important; /* Kadi zinajipanga moja kwa moja kwa wima */
+                gap: 25px;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+        }
